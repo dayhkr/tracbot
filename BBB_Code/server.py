@@ -3,7 +3,7 @@ import sys
 from thread import *
  
 HOST = ''   # Symbolic name meaning all available interfaces
-PORT = 8888 # Arbitrary non-privileged port
+PORT = 1337 # Arbitrary non-privileged port
  
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print 'Socket created'
@@ -31,11 +31,14 @@ def clientthread(conn):
          
         #Receiving from client
         data = conn.recv(1024)
-        reply = 'OK...' + data
-        if not data: 
-            break
+        if data:
+            reply = '<ACK>' + data + "<ACK>"
+            conn.send(reply)
+            if data == "5":
+                break
+
      
-        conn.sendall(reply)
+
      
     #came out of loop
     conn.close()
