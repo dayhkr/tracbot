@@ -20,24 +20,25 @@ def senddata(message):
             data = sock.recv(16)
             amount_received += len(data)
             print >>sys.stderr, 'received "%s"' % data
-    except:
-        print "message not sent"
+    except Exception as e:
+        print e
 
 
 def main():
     while(True):
         direction = getch.getch()
         if(direction == 'w'):
-            senddata(1)
+            senddata("1")
         elif(direction == 'a'):
-            senddata(2)
+            senddata("2")
         elif(direction == 's'):
-            senddata(3)
+            senddata("3")
         elif(direction == 'd'):
-            senddata(4)
+            senddata("4")
         elif(direction == 'f'):
-            senddata(5)
+            senddata("5")
         elif(direction == 'x'):
+            senddata("6")
             sock.close()
             return
         else:
