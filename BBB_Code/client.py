@@ -10,7 +10,7 @@ import sys
 
 def senddata(message):
     try:
-        message = 'This is the message.  It will be repeated.'
+        #message = 'This is the message.  It will be repeated.'
         print >>sys.stderr, 'sending "%s"' % message
         sock.sendall(message)
 
@@ -20,6 +20,8 @@ def senddata(message):
             data = sock.recv(16)
             amount_received += len(data)
             print >>sys.stderr, 'received "%s"' % data
+    except:
+        print "message not sent"
 
 
 def main():
