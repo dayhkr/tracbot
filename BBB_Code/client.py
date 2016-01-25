@@ -17,7 +17,7 @@ def senddata(message):
         amount_received = 0
         amount_expected = len(message)
         while amount_received < amount_expected:
-            data = sock.recv(16)
+            data = sock.recv(1024)
             amount_received += len(data)
             print >>sys.stderr, 'received "%s"' % data
     except Exception as e:
@@ -52,5 +52,8 @@ if __name__=="__main__":
     server_address = ('192.168.1.193', 1337)
     print >>sys.stderr, 'connecting to %s port %s' % server_address
     sock.connect(server_address)
+    data = sock.recv(1024)
+    print >>sys.stderr, 'received "%s"' % data
+
     main()
 
