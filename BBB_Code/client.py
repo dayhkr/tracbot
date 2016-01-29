@@ -27,6 +27,7 @@ def senddata(message):
 
 
 def main():
+    print "Press h for commands"
     while True:
         direction = getch.getch()
         if direction == 'w':
