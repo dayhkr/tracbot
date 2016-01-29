@@ -30,6 +30,9 @@ def clientthread(conn):
                 reply = '<ACK>' + data + "<ACK>"
                 conn.send("Battery 10%")
                 # need to open comm back to main from thread
+            elif data == "exit":
+                conn.send('<ACK>' + data + "<ACK>")
+                break
             else:
                 reply = '<ACK>' + data + "<ACK>"
                 conn.send("Bad command")
