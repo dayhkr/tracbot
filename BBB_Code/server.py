@@ -32,7 +32,6 @@ def clientthread(conn):
         data = conn.recv(1024)
         if data:
             reply = '<ACK>' + data + "<ACK>"
-            print data
             data = data.strip()
             if data == "1":
                 reply = '<ACK>' + data + "<ACK>"
@@ -95,4 +94,5 @@ if __name__ == "__main__":
     try:
         main()
     except(KeyboardInterrupt, SystemExit):
+        print "Closing connection"
         s.close()
