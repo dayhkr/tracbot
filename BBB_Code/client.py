@@ -8,9 +8,11 @@ import getch
 import socket
 import sys
 
+help = "w = forward\na = left\ns = backwards\nd = right\nf = stop\nx = disconnect\nh = help"
+
+
 def senddata(message):
     try:
-        #message = 'This is the message.  It will be repeated.'
         print >>sys.stderr, 'sending "%s"' % message
         sock.sendall(message)
 
@@ -25,26 +27,28 @@ def senddata(message):
 
 
 def main():
-    while(True):
+    while True:
         direction = getch.getch()
-        if(direction == 'w'):
+        if direction == 'w':
             senddata("1")
-        elif(direction == 'a'):
+        elif direction == 'a':
             senddata("2")
-        elif(direction == 's'):
+        elif direction == 's':
             senddata("3")
-        elif(direction == 'd'):
+        elif direction == 'd':
             senddata("4")
-        elif(direction == 'f'):
+        elif direction == 'f':
             senddata("5")
-        elif(direction == 'x'):
+        elif direction == 'x':
             senddata("6")
             sock.close()
             return
+        elif direction == 'h':
+            print help
         else:
             print "Bad direction"
 
-if __name__=="__main__":
+if __name__ == "__main__":
     # Create a TCP/IP socket
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -56,4 +60,3 @@ if __name__=="__main__":
     print >>sys.stderr, 'received "%s"' % data
 
     main()
-
