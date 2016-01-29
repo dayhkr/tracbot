@@ -24,8 +24,7 @@ def sendcmd(data):
 # Function for handling connections. This will be used to create threads
 def clientthread(conn):
     # Sending message to connected client
-    conn.send('Tracbot v0.1 Control channel\n')  # send only takes string
-     
+    conn.send('Tracbot v0.1 Control channel')  # send only takes string
     # infinite loop so that function do not terminate and thread do not end.
     while True:
         reply = ''
@@ -75,7 +74,7 @@ def main():
         # , second is the tuple of arguments to the function.
         start_new_thread(clientthread, (conn,))
  
-    s.close()
+    #s.close()
 
 if __name__ == "__main__":
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -93,4 +92,7 @@ if __name__ == "__main__":
     # Start listening on socket
     s.listen(10)
     print 'Socket now listening'
-    main()
+    try:
+        main()
+    except(KeyboardInterrupt, SystemExit):
+        s.close()
