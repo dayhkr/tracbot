@@ -7,7 +7,7 @@ int speedpinA=9;//enable motor A
 int pinI3=12;//define I3 interface
 int pinI4=13;//define I4 interface
 int speedpinB=10;//enable motor B
-int spead =127;//define the spead of motor
+int spead=127;//define the spead of motor
 int c = 0; //set c to 0
 const int pingPin = 7; //Sets sensor pin number
 
@@ -146,4 +146,13 @@ long microsecondsToInches(long microseconds) {
   // and return, so we divide by 2 to get the distance of the obstacle.
   // See: http://www.parallax.com/dl/docs/prod/acc/28015-PING-v1.3.pdf
   return microseconds / 74 / 2;
+}
+
+int readVoltage(){
+  float temp;
+  voltageVal = analogRead (0); //read the value from voltage sensor.
+  temp = voltageVal/4.092; //resolution value to store
+  voltageVal = (int) temp ;
+  calcVoltageVal = ((voltageVal% 100) / 10); //calculate stepped down voltage
+  return(calcVoltageVal);
 }
